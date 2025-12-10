@@ -8,9 +8,11 @@ import { supabase } from "@/lib/supabaseClient";
 const navItems = [
   { href: "/app", label: "Dashboard" },
   { href: "/app/logs", label: "Logs" },
+  { href: "/app/vitals", label: "Vitals" },   // ← add this line
   { href: "/app/chat", label: "Chat" },
   { href: "/app/settings", label: "Settings" },
 ];
+
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [checkingAuth, setCheckingAuth] = useState(true);

@@ -67,8 +67,32 @@ export function AuthForm() {
           return;
         }
 
-        if (data.session) {
+        const user = data.user;
+
+        if (data.session && user) {
+          // Ensure profile exists for this user
+          const {
+            data: existingProfiles,
+            error: profileCheckError,
+          } = await supabase
+            .from("profiles")
+            .select("id")
+            .eq("id", user.id)
+            .limit(1);
+
+          if (
+            !profileCheckError &&
+            (!existingProfiles || existingProfiles.length === 0)
+          ) {
+            await supabase.from("profiles").insert({
+              id: user.id,
+              full_name: fullName || null,
+            });
+          }
+
           router.push(redirectTo);
+        } else {
+          setErrorMsg("Sign-in failed. No active session.");
         }
       }
     } catch (err) {

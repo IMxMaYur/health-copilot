@@ -20,12 +20,6 @@ export default function Home() {
           >
             Sign in / Sign up
           </Link>
-          <Link
-            href="/app"
-            className="inline-flex items-center justify-center rounded-lg border border-slate-600 px-4 py-2 text-sm font-medium text-slate-200 hover:bg-slate-800 transition"
-          >
-            Open App
-          </Link>
         </div>
 
         <p className="mt-3 text-xs text-slate-500">
